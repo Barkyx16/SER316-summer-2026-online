@@ -10,12 +10,32 @@ public class GameUI {
     }
 
     public void start() {
-        while (!engine.isGameWon() && !engine.hasUserQuit()) {
-            System.out.print("Guess a number between " + engine.getMin() + " and " + engine.getMax() + " (or negative to exit): ");
+        while (!engine.isGameWon()
+                && !engine.isGameOver()
+                && !engine.hasUserQuit()) {
+
+            System.out.print(
+                    "Guess a number between "
+                            + engine.getMin()
+                            + " and "
+                            + engine.getMax()
+                            + " (or enter a negative number to quit): "
+            );
+
             int guess = Utils.readInt(scanner);
 
             GuessResult result = engine.makeGuess(guess);
             System.out.println(result.getMessage());
+
+            if (!result.isCorrect()
+                    && result.getRemainingAttempts() > 0
+                    && !engine.isGameOver()
+                    && !engine.hasUserQuit()) {
+
+                System.out.println(
+                        "Attempts left: " + result.getRemainingAttempts()
+                );
+            }
         }
     }
 }
