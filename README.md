@@ -50,4 +50,9 @@ A cherry pick allows you to take a single commit from one branch and apply it to
 
 #Workflow Reflection
 
-This assignment showed me how teams can use Github for assignments. Also, how you can merge, rebase, squash, and cherry pick to show us how each of these methods affect the project outcome. 
+This assignment showed me how teams can use Github for assignments. Also, how you can merge, rebase, squash, and cherry pick to show us how each of these methods affect the project outcome.
+
+
+## Final Summary
+
+All features got merged into dec, feature 2 got rebased and was later updated and completed from dev, feature 3 got squashed into 1 clean commit, and finally the hotfix was cherry-picked into main before I merged it back into dev. All of the final gradle tests ran and said BUILD SUCCESSFULL. 
