@@ -10,6 +10,7 @@ public class GameEngine {
     private boolean gameWon;
     private boolean userQuit;
     private boolean gameOver;
+    private boolean hintsEnabled;
 
     public GameEngine(int min, int max) {
         this.min = min;
@@ -64,6 +65,7 @@ public class GameEngine {
 
         GuessResult result = new GuessResult(false, message, attempts);
         result.setRemainingAttempts(remaining);
+        result.setHint(getHint(guess));
 
         return result;
     }
@@ -75,6 +77,7 @@ public class GameEngine {
         gameWon = false;
         userQuit = false;
         gameOver = false;
+        hintsEnabled = true;
     }
 
     public boolean isGameWon() {
@@ -103,6 +106,32 @@ public class GameEngine {
 
     public int getMax() {
         return max;
+    }
+
+    public boolean isHintsEnabled() {
+        return hintsEnabled;
+    }
+
+    public void setHintsEnabled(boolean enabled) {
+        hintsEnabled = enabled;
+    }
+
+    private String getHint(int guess) {
+        if (!hintsEnabled) {
+            return "";
+        }
+
+        int difference = Math.abs(target - guess);
+
+        if (attempts >= 3 && difference <= 10) {
+            return "HINT: You're very close!";
+        }
+
+        if (attempts >= 5 && difference <= 20) {
+            return "HINT: Getting warmer!";
+        }
+
+        return "";
     }
 
     // Used only by the test file
